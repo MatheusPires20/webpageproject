@@ -1,0 +1,71 @@
+<!DOCTYPE html> <!-- Declara que o documento será um html-->
+<html lang="en"> <!-- Declara que a linguagem em que o codigo será digitado é inglês -->
+
+    <head>
+        <title>Market</title>
+        <meta charset ="utf-8" />
+    </head>
+
+    <body>
+        <div id="products"> 
+            
+        </div> <!-- Products for sale -->
+
+        <div id="shoppingcart">
+
+        </div> <!-- Products in shopping cart -->
+        
+        <script>
+            const itens =[
+                {
+                id: 0,
+                name: 'Air dots 2',
+                image: 'image.jpg',
+                amounty: 0
+                },
+                {
+                id: 1,
+                name: 'JBL Flip',
+                image: 'image.jpg',
+                amounty: 0
+                },
+                {
+                id: 2,
+                name: 'Iphone XR',
+                image: 'image.jpg',
+                amounty: 0
+                },
+            ]
+            initiateShop = () => {
+                var containerProducts = document.getElementById('products');
+                itens.map((val)=>{
+                    containerProducts.innerHTML += `
+                    <div class="productsingle">
+                        <img src="`+val.image+`"/>
+                        <p>`+val.name+`</p>
+                        <a key="`+val.id+`" href="#">Add Cart!</a>
+                    </div>
+                    
+                    `;  
+                })
+            }
+            initiateShop();
+
+            updateCart = () => {
+                console.log(itens);
+            }
+            
+            var links = document.getElementsByTagName('a');
+
+            for(var i = 0; i < links.lenght; i++){
+                links[i].addEventListener("click",function(){
+                    let key = this.getAttribute('key');
+                    itens[key].amounty++;
+                    updateCart();
+                    return false;
+                })
+            }
+        </script>
+    </body>
+
+</html>
